@@ -1,7 +1,7 @@
 fun main() {
     println("Hello, new world\n")
  
-    var seed:Long = 0
+    var seed:Long
     var emptyArray = longArrayOf()
     var emptyArr = arrayListOf<Long>()
     
@@ -28,43 +28,55 @@ fun main() {
         longArrayOf(1716277852,3056742994,1574488136,0,2525350732,1956389817,3013025394,1322898901,1961915290,
                     2574476703,4113964514,430196980,4122055790)  
                     
+        var gtSource:Boolean
+        var ltMaxSource:Boolean
+        var srMax:Long
+        var map:Long
+        var ifRange:Long
         var ssIndex = 0
-        var ssSrMax:Long = 0
-        var ssMap:Long = 0
-        var ssGtSource:Boolean
-        var ssLtMaxSource:Boolean
-        var ssIfRange:Long = 0 
         var ssToSf:Long = 0
+        var sfIndex = 0
+        var sfToFw:Long = 0
+        var fwIndex = 0
+        var fwToWl:Long = 0
+        var wlIndex = 0
+        var wlToLt:Long = 0
+        var ltIndex = 0
+        var ltToTh:Long = 0
+        var thIndex = 0
+        var thToHl:Long = 0
+        var hlIndex = 0
+        var hlToHl:Long = 0
     
         //sourcerange max = (source + range) - 1
         //map = (seed - source) + destination
     
         for (ssr in ssRange){
             ssIndex++
-            ssSrMax = ((ssSource[ssIndex-1]+ssRange[ssIndex-1])-1)
-            ssMap = (seed-ssSource[ssIndex-1])+ssDestination[ssIndex-1]
+            srMax = ((ssSource[ssIndex-1]+ssRange[ssIndex-1])-1)
+            map = (seed-ssSource[ssIndex-1])+ssDestination[ssIndex-1]
     
             if(seed >= ssSource[ssIndex-1]){
-                ssGtSource = true
+                gtSource = true
             }
             else{
-                ssGtSource = false
+                gtSource = false
             }
     
-            if(seed <= ssSrMax){
-                ssLtMaxSource = true
+            if(seed <= srMax){
+                ltMaxSource = true
             }
             else{
-                ssLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(ssGtSource && ssLtMaxSource){
-                ssIfRange = ssMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                ssIfRange = 0
+                ifRange = 0
             }
-            ssToSf += ssIfRange
+            ssToSf += ifRange
         }
         if(ssToSf == 0L){
             ssToSf = seed
@@ -86,40 +98,32 @@ fun main() {
                     ,1259932044,0,3376298700,2084683431,1715663309,4117538948,3145220807,844461564,3747684999,3769322269,
                     3276335242)   
     
-        var sfIndex = 0
-        var sfSrMax:Long = 0
-        var sfMap:Long = 0
-        var sfGtSource:Boolean
-        var sfLtMaxSource:Boolean
-        var sfIfRange:Long = 0 
-        var sfToFw:Long = 0
-    
         for(sfr in sfRange){
             sfIndex++
-            sfSrMax = ((sfSource[sfIndex-1]+sfRange[sfIndex-1])-1)
-            sfMap = (ssToSf-sfSource[sfIndex-1])+sfDestination[sfIndex-1]
+            srMax = ((sfSource[sfIndex-1]+sfRange[sfIndex-1])-1)
+            map = (ssToSf-sfSource[sfIndex-1])+sfDestination[sfIndex-1]
     
             if(ssToSf >= sfSource[sfIndex-1]){
-                sfGtSource = true
+                gtSource = true
             }
             else{
-                sfGtSource = false
+                gtSource = false
             }
     
-            if(ssToSf <= sfSrMax){
-                sfLtMaxSource = true
+            if(ssToSf <= srMax){
+                ltMaxSource = true
             }
             else{
-                sfLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(sfGtSource && sfLtMaxSource){
-                sfIfRange = sfMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                sfIfRange = 0
+                ifRange = 0
             }
-            sfToFw += sfIfRange
+            sfToFw += ifRange
         }
         if(sfToFw == 0L){
             sfToFw = ssToSf
@@ -150,40 +154,32 @@ fun main() {
                     ,1238471779,2792461797,3953715764,817683100,3474442296,3228888925,3250229924,2829410019,4085967450,1405499147
                     ,4210880388,4111680875,1893134005,4016740946,1826926664,379920251,375697928,1814337867)   
     
-        var fwIndex = 0
-        var fwSrMax:Long = 0
-        var fwMap:Long = 0
-        var fwGtSource:Boolean
-        var fwLtMaxSource:Boolean
-        var fwIfRange:Long = 0 
-        var fwToWl:Long = 0
-    
         for(fwr in fwRange){
             fwIndex++
-            fwSrMax = ((fwSource[fwIndex-1]+fwRange[fwIndex-1])-1)
-            fwMap = (sfToFw-fwSource[fwIndex-1])+fwDestination[fwIndex-1]
+            srMax = ((fwSource[fwIndex-1]+fwRange[fwIndex-1])-1)
+            map = (sfToFw-fwSource[fwIndex-1])+fwDestination[fwIndex-1]
     
             if(sfToFw >= fwSource[fwIndex-1]){
-                fwGtSource = true
+                gtSource = true
             }
             else{
-                fwGtSource = false
+                gtSource = false
             }
     
-            if(sfToFw <= fwSrMax){
-                fwLtMaxSource = true
+            if(sfToFw <= srMax){
+                ltMaxSource = true
             }
             else{
-                fwLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(fwGtSource && fwLtMaxSource){
-                fwIfRange = fwMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                fwIfRange = 0
+                ifRange = 0
             }
-            fwToWl += fwIfRange
+            fwToWl += ifRange
         }
         if(fwToWl == 0L){
             fwToWl = sfToFw
@@ -214,40 +210,32 @@ fun main() {
                     ,1901927664,749066216,1787411246,3795290865,4035785149,4173270081,3001382926,97774358,38271406,1115348538
                     ,2938014447,1602538802,1828577602,2969899147,1475562429,2891858480,1048308227,0,2223933612)   
     
-        var wlIndex = 0
-        var wlSrMax:Long = 0
-        var wlMap:Long = 0
-        var wlGtSource:Boolean
-        var wlLtMaxSource:Boolean
-        var wlIfRange:Long = 0 
-        var wlToLt:Long = 0
-    
         for(wlr in wlRange){
             wlIndex++
-            wlSrMax = ((wlSource[wlIndex-1]+wlRange[wlIndex-1])-1)
-            wlMap = (fwToWl-wlSource[wlIndex-1])+wlDestination[wlIndex-1]
+            srMax = ((wlSource[wlIndex-1]+wlRange[wlIndex-1])-1)
+            map = (fwToWl-wlSource[wlIndex-1])+wlDestination[wlIndex-1]
     
             if(fwToWl >= wlSource[wlIndex-1]){
-                wlGtSource = true
+                gtSource = true
             }
             else{
-                wlGtSource = false
+                gtSource = false
             }
     
-            if(fwToWl <= wlSrMax){
-                wlLtMaxSource = true
+            if(fwToWl <= srMax){
+                ltMaxSource = true
             }
             else{
-                wlLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(wlGtSource && wlLtMaxSource){
-                wlIfRange = wlMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                wlIfRange = 0
+                ifRange = 0
             }
-            wlToLt += wlIfRange
+            wlToLt += ifRange
     
         }
         if(wlToLt == 0L){
@@ -276,40 +264,32 @@ fun main() {
         longArrayOf(318068442,4139509244,4093645836,3053768010,207331307,0,3761428671,359595357,3967641388,406958489
                     ,3572445195,1295057360,3638852524,1526000020,1309324872,4172041090)  
     
-        var ltIndex = 0
-        var ltSrMax:Long = 0
-        var ltMap:Long = 0
-        var ltGtSource:Boolean
-        var ltLtMaxSource:Boolean
-        var ltIfRange:Long = 0 
-        var ltToTh:Long = 0
-    
         for(ltr in ltRange){
             ltIndex++
-            ltSrMax = ((ltSource[ltIndex-1]+ltRange[ltIndex-1])-1)
-            ltMap = (wlToLt-ltSource[ltIndex-1])+ltDestination[ltIndex-1]
+            srMax = ((ltSource[ltIndex-1]+ltRange[ltIndex-1])-1)
+            map = (wlToLt-ltSource[ltIndex-1])+ltDestination[ltIndex-1]
     
             if(wlToLt >= ltSource[ltIndex-1]){
-                ltGtSource = true
+                gtSource = true
             }
             else{
-                ltGtSource = false
+                gtSource = false
             }
     
-            if(wlToLt <= ltSrMax){
-                ltLtMaxSource = true
+            if(wlToLt <= srMax){
+                ltMaxSource = true
             }
             else{
-                ltLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(ltGtSource && ltLtMaxSource){
-                ltIfRange = ltMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                ltIfRange = 0
+                ifRange = 0
             }
-            ltToTh += ltIfRange
+            ltToTh += ifRange
     
         }
         if(ltToTh == 0L){
@@ -338,40 +318,32 @@ fun main() {
         val thSource = 
         longArrayOf(1391213880,3613119976,1240145095,3458067104,1186202615,0,3644641030)   
     
-        var thIndex = 0
-        var thSrMax:Long = 0
-        var thMap:Long = 0
-        var thGtSource:Boolean
-        var thLtMaxSource:Boolean
-        var thIfRange:Long = 0 
-        var thToHl:Long = 0
-    
         for(thr in thRange){
             thIndex++
-            thSrMax = ((thSource[thIndex-1]+thRange[thIndex-1])-1)
-            thMap = (ltToTh-thSource[thIndex-1])+thDestination[thIndex-1]
+            srMax = ((thSource[thIndex-1]+thRange[thIndex-1])-1)
+            map = (ltToTh-thSource[thIndex-1])+thDestination[thIndex-1]
     
             if(ltToTh >= thSource[thIndex-1]){
-                thGtSource = true
+                gtSource = true
             }
             else{
-                thGtSource = false
+                gtSource = false
             }
     
-            if(ltToTh <= thSrMax){
-                thLtMaxSource = true
+            if(ltToTh <= srMax){
+                ltMaxSource = true
             }
             else{
-                thLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(thGtSource && thLtMaxSource){
-                thIfRange = thMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                thIfRange = 0
+                ifRange = 0
             }
-            thToHl += thIfRange
+            thToHl += ifRange
     
         }
         if(thToHl == 0L){
@@ -412,42 +384,34 @@ fun main() {
                     ,3517760656,3518522233,2483142439,2237751133,2844327960,1268353490,0,214510937,3505966475,3462174954
                     ,3952138264)   
     
-        var hlIndex = 0
-        var hlSrMax:Long = 0
-        var hlMap:Long = 0
-        var hlGtSource:Boolean
-        var hlLtMaxSource:Boolean
-        var hlIfRange:Long = 0 
-        var hlToHl:Long = 0
-    
         for(hlr in hlRange){
             hlIndex++
-            hlSrMax = ((hlSource[hlIndex-1]+hlRange[hlIndex-1])-1)
-            hlMap = (thToHl-hlSource[hlIndex-1])+hlDestination[hlIndex-1]
+            srMax = ((hlSource[hlIndex-1]+hlRange[hlIndex-1])-1)
+            map = (thToHl-hlSource[hlIndex-1])+hlDestination[hlIndex-1]
     
             if(thToHl >= hlSource[hlIndex-1]){
-                hlGtSource = true
+                gtSource = true
             }
             else{
-                hlGtSource = false
+                gtSource = false
             }
     
-            if(thToHl <= hlSrMax){
-                hlLtMaxSource = true
+            if(thToHl <= srMax){
+                ltMaxSource = true
             }
             else{
-                hlLtMaxSource = false
+                ltMaxSource = false
             }
     
-            if(hlGtSource && hlLtMaxSource){
-                hlIfRange = hlMap
+            if(gtSource && ltMaxSource){
+                ifRange = map
             }
             else{
-                hlIfRange = 0
+                ifRange = 0
             }
-            hlToHl += hlIfRange
+            hlToHl += ifRange
     
-            //println("humidity-to-location ~~~ index: $hlIndex map: $hlMap, boolsource: $hlGtSource, boolmaxsource: $hlLtMaxSource, ifWithinRange: $hlIfRange")
+            //println("humidity-to-location ~~~ index: $hlIndex map: $map, boolsource: $gtSource, boolmaxsource: $ltMaxSource, ifWithinRange: $ifRange")
         }
         if(hlToHl == 0L){
             hlToHl = thToHl
