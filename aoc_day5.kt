@@ -1,32 +1,22 @@
 fun main() {
+    
     println("Hello, new world\n")
  
-    var seed:Long
-    var emptyArray = longArrayOf()
-    var emptyArr = arrayListOf<Long>()
-    
-    var x:Long = 3876866151
     //var ind = 0
+    var seed:Long
+    var emptyOutputArray = longArrayOf()
+    var emptySeedArray = arrayListOf<Long>()
+
+    var x:Long = 3876866151
 
     for(t in 3876866151..3876966151 step 1){
         x += 1
-        emptyArr.add(x)
+        emptySeedArray.add(x)
     }
 
-    for (sd in emptyArr){
+    for (sd in emptySeedArray){
         //ind++
         seed = sd
-
-        /***seed to soil***/
-        val ssRange = 
-        longArrayOf(240111965,1057221520,141789716,430196980,49125971,5525473,43717600,251589235,563435442,
-                    438548691,8091276,892701921,118910618)
-        val ssDestination = 
-        longArrayOf(2328388605,3183744888,0,886579086,141789716,881053613,3131936012,629464378,2568500570,
-                    190915687,3175653612,1435686684,1316776066)   
-        val ssSource = 
-        longArrayOf(1716277852,3056742994,1574488136,0,2525350732,1956389817,3013025394,1322898901,1961915290,
-                    2574476703,4113964514,430196980,4122055790)  
                     
         var gtSource:Boolean
         var ltMaxSource:Boolean
@@ -47,6 +37,17 @@ fun main() {
         var thToHl:Long = 0
         var hlIndex = 0
         var hlToHl:Long = 0
+
+        /***seed to soil***/
+        val ssRange = 
+        longArrayOf(240111965,1057221520,141789716,430196980,49125971,5525473,43717600,251589235,563435442,
+                    438548691,8091276,892701921,118910618)
+        val ssDestination = 
+        longArrayOf(2328388605,3183744888,0,886579086,141789716,881053613,3131936012,629464378,2568500570,
+                    190915687,3175653612,1435686684,1316776066)   
+        val ssSource = 
+        longArrayOf(1716277852,3056742994,1574488136,0,2525350732,1956389817,3013025394,1322898901,1961915290,
+                    2574476703,4113964514,430196980,4122055790)  
     
         //sourcerange max = (source + range) - 1
         //map = (seed - source) + destination
@@ -436,8 +437,8 @@ fun main() {
         }
         //println("index: $ind, $hlToHl")
         //println()
-        emptyArray += hlToHl
+        emptyOutputArray += hlToHl
     }
-    emptyArray.sort()
-    println(emptyArray[0])
+    emptyOutputArray.sort()
+    println(emptyOutputArray[0])
 }
